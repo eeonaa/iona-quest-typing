@@ -5,9 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iona typing project</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/keyboard.css">
+    <link rel="stylesheet" href="css/inventory.css">
   </head>
   <body style="user-select: none; overflow: hidden;">
 
-    <script type="module" src="js/main.js"></script>
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- NAV BAR -->
+    <nav>
+			<a class="profile-info icon" id="switch-to-game-btn" onclick="switchToGame()">sports_esports</a>
+			<!-- <a class="profile-info icon" id="switch-to-multi-btn" onclick="switchToMultiplayer()">public</a> -->
+			<!-- <a class="profile-info icon" id="switch-to-friends-btn" onclick="switchToFriends()">groups</a> -->
+			<a class="profile-info icon" id="switch-to-inven-btn" onclick="switchToInventory()">travel_luggage_and_bags</a>
+			<a class="profile-info icon" id="switch-to-gacha-btn" onclick="switchToGacha()">storefront</a>
+			<!-- <a class="profile-info icon" id="switch-to-leaderboards-btn" onclick="switchToLeaderboards()">trophy</a> -->
+			<a class="profile-info border" id="currency"><i class="icon">attach_money</i>10<i class="icon">manufacturing</i> 10</a>
+			<a class="login profile-info border" id="username-level">iona LVL 1</a>
+		</nav>
+
+    <!-- GAME VIEW -->
+    <div class="game-view-holder closable" id="gameWindow">
+			<div class="game-view">
+				<div class="score-bar">
+					<div class="left">
+						<h1 id="time">15s</h1>
+						<div class="meter">
+							<span id="metre-val" style="width: 100%;"></span>
+						  </div>
+						<div id="combo">COMBO:0</div></div>
+					
+					<div id="other-player-small-container" class="right">
+					</div>
+				</div>
+				<br><br>
+				<div class="words noselect" id="words"><span id="row-0" class="row"><span class="current">c</span>atch business drive day attorney explain bar </span><br><span id="row-1" class="row">choice soldier computer political laugh </span><br><span id="row-2" class="row">remain send herself good training score when </span><br></div>
+				<br><br>
+
+				<div id="my-keyboard">
+          <div class="keyboard noselect">
+            <div class="keycap-row row-1">
+              <div class="keycap special specMods" id="Esc-Key">Esc</div>
+              <div class="keycap alpha" id="Q-KEY">Q</div>
+              <div class="keycap alpha" id="W-KEY">W</div>
+              <div class="keycap alpha" id="E-KEY">E</div>
+              <div class="keycap alpha" id="R-KEY">R</div>
+              <div class="keycap alpha" id="T-KEY">T</div>
+              <div class="keycap alpha" id="Y-KEY">Y</div>
+              <div class="keycap alpha" id="U-KEY">U</div>
+              <div class="keycap alpha" id="I-KEY">I</div>
+              <div class="keycap alpha" id="O-KEY">O</div>
+              <div class="keycap alpha" id="P-KEY">P</div>
+              <div class="keycap special mods" id="Del-Key">Del</div>
+            </div>
+            <div class="keycap-row row-2">
+              <div class="keycap special mods" id="Tab-KEY">Tab</div>
+              <div class="keycap alpha" id="A-KEY">A</div>
+              <div class="keycap alpha" id="S-KEY">S</div>
+              <div class="keycap alpha" id="D-KEY">D</div>
+              <div class="keycap alpha" id="F-KEY">F</div>
+              <div class="keycap alpha" id="G-KEY">G</div>
+              <div class="keycap alpha" id="H-KEY">H</div>
+              <div class="keycap alpha" id="J-KEY">J</div>
+              <div class="keycap alpha" id="K-KEY">K</div>
+              <div class="keycap alpha" id="L-KEY">L</div>
+              <div class="keycap special spedMods" id="Return-KEY">Return</div>
+            </div>
+            <div class="keycap-row row-3">
+              <div class="keycap mods" id="Shift-KEY">⇧</div>
+              <div class="keycap alpha" id="Z-KEY">Z</div>
+              <div class="keycap alpha" id="X-KEY">X</div>
+              <div class="keycap alpha" id="C-KEY">C</div>
+              <div class="keycap alpha" id="V-KEY">V</div>
+              <div class="keycap alpha" id="B-KEY">B</div>
+              <div class="keycap alpha" id="N-KEY">N</div>
+              <div class="keycap alpha" id="M-KEY">M</div>
+              <div class="keycap alpha" id="/-KEY">/?</div>
+              <div class="keycap special mods" id="/-KEY">Fn</div>
+              <div class="keycap mods" id="/-KEY">⇧</div>
+            </div>
+            <div class="keycap-row row-4">
+              <div class="keycap special mods" id="Ctrl-KEY">Ctrl</div>
+              <div class="keycap special mods" id="Alt-KEY">Alt</div>
+              <div class="keycap spacebar specMods" id=" -KEY"></div>
+              <div class="keycap special mods" id="Win-KEY">Win</div>
+              <div class="keycap special mods" id="/-KEY">Ctrl</div>
+            </div>
+          </div>
+        </div>
+			</div>
+		</div>
+
+    <!-- INVENTORY -->
+    <div class="inventory-partial closable" id="inventoryWindow" style="display: none;">
+      <section class="inventory-page" style="position: absolute;top: 0;">
+        <section class="keyboard-section">
+
+          <div class="keyboard noselect">
+            <div class="keycap-row row-1">
+              <div class="keycap special specMods" id="esc-Key">esc</div>
+              <div class="keycap alpha" id="Q-KEY">Q</div>
+              <div class="keycap alpha" id="W-KEY">W</div>
+              <div class="keycap alpha" id="E-KEY">E</div>
+              <div class="keycap alpha" id="R-KEY">R</div>
+              <div class="keycap alpha" id="T-KEY">T</div>
+              <div class="keycap alpha" id="Y-KEY">Y</div>
+              <div class="keycap alpha" id="U-KEY">U</div>
+              <div class="keycap alpha" id="I-KEY">I</div>
+              <div class="keycap alpha" id="O-KEY">O</div>
+              <div class="keycap alpha" id="P-KEY">P</div>
+              <div class="keycap special mods" id="\-Key">Del</div>
+            </div>
+            <div class="keycap-row row-2">
+              <div class="keycap special mods" id="Caps-KEY">Caps</div>
+              <div class="keycap alpha" id="A-KEY">A</div>
+              <div class="keycap alpha" id="S-KEY">S</div>
+              <div class="keycap alpha" id="D-KEY">D</div>
+              <div class="keycap alpha" id="F-KEY">F</div>
+              <div class="keycap alpha" id="G-KEY">G</div>
+              <div class="keycap alpha" id="H-KEY">H</div>
+              <div class="keycap alpha" id="J-KEY">J</div>
+              <div class="keycap alpha" id="K-KEY">K</div>
+              <div class="keycap alpha" id="L-KEY">L</div>
+              <div class="keycap special spedMods" id="Return-KEY">Return</div>
+            </div>
+            <div class="keycap-row row-3">
+              <div class="keycap mods" id="Shift-KEY">⇧</div>
+              <div class="keycap alpha" id="Z-KEY">Z</div>
+              <div class="keycap alpha" id="X-KEY">X</div>
+              <div class="keycap alpha" id="C-KEY">C</div>
+              <div class="keycap alpha" id="V-KEY">V</div>
+              <div class="keycap alpha" id="B-KEY">B</div>
+              <div class="keycap alpha" id="N-KEY">N</div>
+              <div class="keycap alpha" id="M-KEY">M</div>
+              <div class="keycap alpha" id="/-KEY">/?</div>
+              <div class="keycap special mods" id="/-KEY">Fn</div>
+              <div class="keycap mods" id="Shift-KEY">⇧</div>
+            </div>
+            <div class="keycap-row row-4">
+              <div class="keycap special mods" id="/-KEY">Ctrl</div>
+              <div class="keycap special mods" id="/-KEY">Alt</div>
+              <div class="keycap spacebar specMods" id=" -KEY"></div>
+              <div class="keycap special mods" id="/-KEY">Win</div>
+              <div class="keycap special mods" id="/-KEY">Ctrl</div>
+            </div>
+          </div>
+
+          <section class="selected-item">
+            <h1 class="item-name">Select Something!</h1>
+            <h3 class="item-description">Description</h3>
+            <div class="buttons">
+              <button id="equip-button" onclick="equipCurrent()">Equip</button>
+              <button id="cancel-button" onclick="cancelPreview()">Cancel</button>
+              <button id="favourite-button" onclick="setFavourite()">Favourite</button>
+              <button id="scrap-button" onclick="confirmScrapItem()">Scrap</button>
+            </div>
+          </section>
+        </section>
+        <section class="inventory">
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+          <div class="inventory-item">
+            <div class="item-image"><img src="/assets/keycap.svg"></div>
+            <h1>Item Name</h1>
+          </div>
+        </section>
+      </section>
+      
+        <section class="bottom-nav">
+            <a href="#" onclick="showInventoryType(0)">Keycaps</a>
+            <a href="#" onclick="showInventoryType(1)">Cases</a>
+            <a href="#" onclick="showInventoryType(2)">Themes</a>
+        </section>  
+      </div>
+
+    <script src="js/main.js"></script>
   </body>
 </html>
