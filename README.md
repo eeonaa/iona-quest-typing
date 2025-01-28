@@ -1,6 +1,9 @@
 # Iona's Quest Typing
 ## An archive project of Loki Typing Project (loki.katto.studio)
 
+### How to Contribute
+#### If you want to contribute, please open a Pull Request and I will review it!
+
 ### Starting the project
 #### Before cloning the repo, make sure that these tools are installed locally on your PC so that the game can be locally hosted
 - NodeJS
@@ -14,3 +17,4 @@
 ### Archive Images
 #### To see reference images for the game, please go to ```/assets/archive```
 #### If you have any reference images or videos, please feel free to add them
+
